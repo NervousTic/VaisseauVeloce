@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI/defaut.theme" type="Theme" id=1]
 [ext_resource path="res://Lobby/Lobby.gd" type="Script" id=2]
 [ext_resource path="res://Lobby/AttentePartie.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Lobby/AttentePartie.gd" type="Script" id=4]
 
 [node name="Lobby" type="Control"]
 anchor_right = 1.0
@@ -97,8 +98,11 @@ margin_right = 317.0
 margin_bottom = 196.0
 text = "Rejoindre"
 
-[node name="AttentePartie" parent="." instance=ExtResource( 3 )]
-visible = false
+[node name="AttentePartie" parent="." groups=[
+"AttentePartie",
+] instance=ExtResource( 3 )]
+script = ExtResource( 4 )
 
+[connection signal="text_changed" from="VBoxContainer/CenterContainer/GridContainer/NomTextBox" to="." method="_on_NomTextBox_text_changed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostBouton" to="." method="_on_HostBouton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinBouton" to="." method="_on_JoinBouton_pressed"]
