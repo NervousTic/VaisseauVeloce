@@ -5,6 +5,7 @@ const STEER_SPEED = 1
 
 const MAX_ENGINE_FORCE = 175
 const MAX_BRAKE_FORCE = 10
+const MAX_SPEED = 30
 
 #direction des roues
 var steer_target = 0.0
@@ -48,10 +49,11 @@ func apply_throttle():
 	var forward = Input.get_action_strength("forward")
 	var back = Input.get_action_strength("back")
 	
-	if forward:
-		throttle_val = forward
-	elif back :
-		throttle_val = -back
+	if linear_velocity.length() < MAX_SPEED:
+		if forward:
+			throttle_val = forward
+		elif back :
+			throttle_val = -back
 		
 	return throttle_val * MAX_ENGINE_FORCE
 
