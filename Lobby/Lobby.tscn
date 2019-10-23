@@ -52,7 +52,7 @@ align = 2
 margin_left = 115.0
 margin_right = 317.0
 margin_bottom = 44.0
-text = "Joueur"
+text = "Joueur 1"
 align = 1
 
 [node name="IpLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
@@ -101,8 +101,28 @@ text = "Rejoindre"
 [node name="AttentePartie" parent="." groups=[
 "AttentePartie",
 ] instance=ExtResource( 3 )]
+visible = false
 script = ExtResource( 4 )
+
+[node name="Label" parent="AttentePartie/VBoxContainer" index="0"]
+margin_bottom = 34.0
+
+[node name="CenterContainer" parent="AttentePartie/VBoxContainer" index="1"]
+margin_top = 38.0
+margin_bottom = 123.0
+
+[node name="ItemList" parent="AttentePartie/VBoxContainer/CenterContainer" index="0"]
+margin_bottom = 85.0
+items = [ "Joueur 1", null, false, "Joueur 2", null, false ]
+
+[node name="ReadyButton" parent="AttentePartie/VBoxContainer" index="2"]
+visible = false
+margin_top = 127.0
+margin_bottom = 167.0
 
 [connection signal="text_changed" from="VBoxContainer/CenterContainer/GridContainer/NomTextBox" to="." method="_on_NomTextBox_text_changed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostBouton" to="." method="_on_HostBouton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinBouton" to="." method="_on_JoinBouton_pressed"]
+[connection signal="pressed" from="AttentePartie/VBoxContainer/ReadyButton" to="." method="_on_ReadyButton_pressed"]
+
+[editable path="AttentePartie"]

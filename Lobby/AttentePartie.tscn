@@ -41,3 +41,11 @@ rect_min_size = Vector2( 320, 0 )
 items = [ "Joueur 1", null, false, "Joueur 2", null, false ]
 auto_height = true
 
+[node name="ReadyButton" type="Button" parent="VBoxContainer" groups=[
+"HostOnly",
+]]
+margin_top = 67.0
+margin_right = 1024.0
+margin_bottom = 87.0
+text = "Commencer"
+

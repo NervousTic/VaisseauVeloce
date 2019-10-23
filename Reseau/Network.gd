@@ -63,3 +63,10 @@ func _on_player_connected(id):
 sync func update_waiting_room():
 	get_tree().call_group("AttentePartie", "refresh_players", players)
 	
+func star_game():
+	rpc ("load_world")
+	
+sync func load_world():
+	get_tree().change_scene("res://World/World.tscn")
+	
+	

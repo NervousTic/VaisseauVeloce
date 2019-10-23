@@ -14,6 +14,7 @@ func _ready():
 func _on_HostBouton_pressed():
 	Network.selected_port = int(port.text)
 	Network.create_server()
+	get_tree().call_group("HostOnly", "show")
 	create_attente_partie()
 
 
@@ -32,3 +33,7 @@ func _on_NomTextBox_text_changed(new_text):
 func create_attente_partie():
 	$AttentePartie.popup_centered()
 	$AttentePartie.refresh_players(Network.players)
+
+func _on_ReadyButton_pressed():
+	Network.star_game()
+	pass # Replace with function body.
