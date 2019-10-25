@@ -112,7 +112,8 @@ margin_top = 38.0
 margin_bottom = 123.0
 
 [node name="ItemList" parent="AttentePartie/VBoxContainer/CenterContainer" index="0"]
-margin_bottom = 85.0
+margin_top = 42.0
+margin_bottom = 42.0
 items = [ "Joueur 1", null, false, "Joueur 2", null, false ]
 
 [node name="ReadyButton" parent="AttentePartie/VBoxContainer" index="2"]

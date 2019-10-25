@@ -12,14 +12,35 @@ var steer_target = 0.0
 #angle des roues
 var steer_angle = 0.0
 
+sync var players = {}
+var player_data = {"steer": 0, "engine": 0, "brakes": 0, "position": null }
+
+func _ready():
+	players[name] = player_data
+	players[name].position = transform
+	if not is_local_player():
+		$Camera.queue_free()
+	
+	
+func is_local_player():
+	return name == str(Network.local_player_id)
+
 func _physics_process(delta):
-	drive(delta)
+	if is_local_player():
+		drive(delta)
+	if not Network.local_player_id == 1:
+		transform = players[name].position
+	
+	steering = players[name].steer
+	engine_force = players[name].engine
+	brake = players[name].brakes
 	
 func drive(delta):
-	steering = apply_steering (delta)
-	print (steering)
-	engine_force = apply_throttle()
-	brake = apply_brakes()
+	var steering_value = apply_steering (delta)
+	var throttle = apply_throttle()
+	var brakes = apply_brakes()
+	
+	update_server(name, steering_value, throttle, brakes)
 	
 func apply_steering(delta):
 	var steer_val = 0
@@ -66,7 +87,16 @@ func apply_brakes():
 	
 	return brake_val * MAX_BRAKE_FORCE
 	
+func update_server(id, steering_value, throttle, brakes ):
+	if not Network.local_player_id == 1:
+		rpc_unreliable_id(1, "manage_clients",id, steering_value, throttle, brakes)
+	else:
+		manage_clients(id, steering_value, throttle, brakes)
 	
-	
-	
+sync func manage_clients(id, steering_value, throttle, brakes):
+	players[id].steer = steering_value
+	players[id].engine = throttle
+	players[id].brakes = brakes
+	players[id].position = transform
+	rset_unreliable("players", players)
 	

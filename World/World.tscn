@@ -12,7 +12,6 @@ albedo_color = Color( 0.752941, 0.0352941, 0.835294, 1 )
 script = ExtResource( 1 )
 
 [node name="Floor" type="CSGBox" parent="."]
-editor/display_folded = true
 use_collision = true
 invert_faces = true
 width = 200.0
@@ -65,7 +64,7 @@ depth = 4.0
 material = SubResource( 1 )
 
 [node name="Block2" type="CSGBox" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 26 )
 width = 4.0
 height = 6.0
 depth = 4.0
@@ -107,7 +106,7 @@ depth = 4.0
 material = SubResource( 1 )
 
 [node name="CSGBox" type="CSGBox" parent="Floor"]
-transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -11, 2, 1 )
+transform = Transform( 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -11, 2, 24 )
 height = 20.0
 material = SubResource( 2 )
 
